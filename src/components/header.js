@@ -1,9 +1,10 @@
-import { graphql, Link, useStaticQuery } from "gatsby"
+import { graphql, Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
+import { useHelloWorld } from "../hooks/useHelloWorld"
 
 const Header = ({ siteTitle }) => {
-  const data = useStaticQuery(graphql`
+  const hello = useHelloWorld(graphql`
     {
       allFile(filter: {relativePath: {regex: "/Header\\/.+\\\\.yml/"}}) {
         nodes {
@@ -14,8 +15,6 @@ const Header = ({ siteTitle }) => {
       }
     }
   `)
-
-  const hello = data.allFile.nodes[0].childYaml.hello
 
   return (
     <header
